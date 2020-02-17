@@ -2,35 +2,35 @@
 
 echo Starting FanCurve!
 
-#Sets fanControlState to 1
-DEFAULT=(nvidia-settings -a "[gpu:0]/GPUFanControlState=1")
-${DEFAULT[@]}
+#Sets fanControlState to 1 and gpu performance mode to "High performance"
+default=(nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[gpu:0]/GPUPowerMizerMode=1")
+${default[@]}
 
 
 while :
 do
 
 #Assigns GPU temp to 'TEMP'
-TEMP=$(nvidia-settings -t -q [gpu:0]/GPUCoreTemp)
+temp=$(nvidia-settings -t -q [gpu:0]/GPUCoreTemp)
 
 	#these decide the target fan speed
-	if [[ $TEMP -ge 45 && $TEMP -lt 50 ]]
+	if [[ $temp -ge 45 && $temp -lt 50 ]]
 	then
-	 DEFAULT=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=35")
-	elif [[ $TEMP -ge 50 && $TEMP -lt 65 ]]
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=35")	#45c-50c
+	elif [[ $temp -ge 50 && $temp -lt 65 ]]
 	then
-	 DEFAULT=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=45")
-	elif [[ $TEMP -ge 65 && $TEMP -lt 80 ]]
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=45")	#50c-65c
+	elif [[ $temp -ge 65 && $temp -lt 80 ]]
 	then
-	 DEFAULT=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=55")
-	elif [[ $TEMP -ge 80 ]]
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=55")	#65c-80c
+	elif [[ $temp -ge 80 ]]
 	then
-	 DEFAULT=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=90")
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=90")	#over 80c
 	else	
-	 DEFAULT=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=25")
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=25")	#Under 45c
 	fi
 		
-	${DEFAULT[@]}  #This sets the Fanspeed
+	${default[@]}  #This sets the Fanspeed
 	
 	sleep 7  #time between loops
 done
