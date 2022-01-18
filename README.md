@@ -1,6 +1,6 @@
 # LinuxNvidiaEZfanCurve
 
-VERY basic fan curve, this is my very first script.
+VERY basic fan curve, this is my first script.
 
 Dependencies:<br />
 -sudo nvidia-xconfig --cool-bits=4<br />
