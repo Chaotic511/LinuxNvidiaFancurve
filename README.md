@@ -10,6 +10,3 @@ How to use:<br />
 1.Download the script<br />
 2.Run the script at startup<br />
 3.
-
-to do:<br />
--linear fan curve
