@@ -1,4 +1,4 @@
-# LinuxNvidiaEZfanCurve
+# LinuxNvidiafanCurve
 
 VERY basic fan curve, this is my first script.
 
