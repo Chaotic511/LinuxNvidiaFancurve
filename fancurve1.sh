@@ -17,15 +17,19 @@ temp=$(nvidia-settings -t -q [gpu:0]/GPUCoreTemp)
 	if [[ $temp -ge 45 && $temp -lt 50 ]]
 	then
 	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=35")	#45c-50c
+	
 	elif [[ $temp -ge 50 && $temp -lt 65 ]]
 	then
 	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=45")	#50c-65c
-	elif [[ $temp -ge 65 && $temp -lt 80 ]]
+	
+	elif [[ $temp -ge 65 && $temp -lt 85 ]]
 	then
-	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=55")	#65c-80c
-	elif [[ $temp -ge 80 ]]
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=65")	#65c-85c
+	
+	elif [[ $temp -ge 85 ]]
 	then
-	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=90")	#over 80c
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=100")	#over 85c
+	
 	else	
 	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=25")	#Under 45c
 	fi
