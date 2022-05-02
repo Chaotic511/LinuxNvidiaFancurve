@@ -2,16 +2,15 @@
 
 echo Starting FanCurve!
 
-#Sets fanControlState to 1 and gpu performance mode to "High performance"
-default=(nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[gpu:0]/GPUPowerMizerMode=1")
+#Sets fanControlState to 1
+default=(nvidia-settings -a "[gpu:0]/GPUFanControlState=1")
 ${default[@]}
-
 
 while :
 do
 
 #Assigns GPU temp to 'TEMP'
-temp=$(nvidia-settings -t -q [gpu:0]/GPUCoreTemp)
+temp=$(nvidia-smi -q -d temperature | grep "GPU Current Temp" | tr -d ':''C' | awk '{print $4'})
 
 	#these decide the target fan speed
 	if [[ $temp -ge 45 && $temp -lt 50 ]]
