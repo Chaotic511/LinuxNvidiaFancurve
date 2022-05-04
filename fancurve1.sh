@@ -30,7 +30,7 @@ temp=$(nvidia-smi -q -d temperature | grep "GPU Current Temp" | tr -d ':''C' | a
 	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=100")	#over 85c
 	
 	else	
-	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=25")	#Under 45c
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=20")	#Under 45c
 	fi
 		
 	${default[@]}  #This sets the Fanspeed
