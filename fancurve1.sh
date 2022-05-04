@@ -2,7 +2,7 @@
 
 echo Starting FanCurve!
 
-#Sets fanControlState to 1
+#Sets fanControlState to 1,  add -a "[gpu:0]/GpuPowerMizerMode=0" to change powerstates on launch  (0, 1, 2)
 default=(nvidia-settings -a "[gpu:0]/GPUFanControlState=1")
 ${default[@]}
 
@@ -15,7 +15,7 @@ temp=$(nvidia-smi -q -d temperature | grep "GPU Current Temp" | tr -d ':''C' | a
 	#these decide the target fan speed
 	if [[ $temp -ge 45 && $temp -lt 50 ]]
 	then
-	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=35")	#45c-50c
+	 default=(nvidia-settings -a "[fan:0]/GPUTargetFanSpeed=25")	#45c-50c
 	
 	elif [[ $temp -ge 50 && $temp -lt 65 ]]
 	then
